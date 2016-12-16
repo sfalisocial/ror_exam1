@@ -1,0 +1,34 @@
+<header>
+  <form action='/sessions/destroy' method='post'>
+    <input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+    <input type='hidden' name='_method' value='delete'>
+    <input type='submit' value='Log Out'>
+  </form>
+</header>
+<div>
+  <p>Name:<%= @user.first_name %> <%= @user.last_name %></p>
+  <p>Amount Needed:$<%= @user.needed %></p>
+  <p>Amount Raised:$<%= @user.raised %></p>
+</div>
+
+<h1>List of People Who Lent You Money</h1>
+<div>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Amount Raised</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @lenders.each do |item| %>
+      <tr>
+        <td><%= item.first_name %></td>
+        <td><%= item.email %></td>
+        <td><%= item.amount %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

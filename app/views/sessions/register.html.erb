@@ -1,0 +1,27 @@
+<h3>Lender</h3>
+<form action="/lenders/create" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="text" name="lender[first_name]" placeholder="First Name">
+  <input type="text" name="lender[last_name]" placeholder="Last Name">
+  <input type="text" name="lender[email]" placeholder="Email">
+  <input type="text" name="lender[password]" placeholder="Password">
+  <input type="text" name="lender[password_confirmation]" placeholder="Password Confirmation">
+  <input type="number" min=0 name="lender[money]">
+  <input type="submit" value="Register!">
+</form>
+<a href="/sessions/new">Already a member?</a>
+
+<h3>Borrower</h3>
+<form action="/borrowers/create" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="text" name="borrower[first_name]" placeholder="First Name">
+  <input type="text" name="borrower[last_name]" placeholder="Last Name">
+  <input type="text" name="borrower[email]" placeholder="Email">
+  <input type="text" name="borrower[password]" placeholder="Password">
+  <input type="text" name="borrower[password_confirmation]" placeholder="Password Confirmation">
+  <input type="text" name="borrower[purpose]" placeholder="Need Money For">
+  <textarea name="borrower[description]">Description</textarea>
+  <input type="number" min=0 name="borrower[needed]">
+  <input type="submit" value="Register!">
+</form>
+<a href="/sessions/new">Already a member?</a>

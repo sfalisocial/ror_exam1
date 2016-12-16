@@ -1,0 +1,71 @@
+<header>
+  <form action='/sessions/destroy' method='post'>
+    <input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+    <input type='hidden' name='_method' value='delete'>
+    <input type='submit' value='Log Out'>
+  </form>
+</header>
+<p>Name:<%= @user.first_name %> <%= @user.last_name %></ </p>
+<p>Account Balance:$<%= @user.money %></p>
+<h1>List of People in Need of Help</h1>
+<div>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Need Money For</th>
+        <th>Reason for Loan</th>
+        <th>Amount Needed</th>
+        <th>Amount Raised</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @borrowers.each do |item| %>
+      <tr>
+        <td><%= item.first_name %></td>
+        <td><%= item.purpose %></td>
+        <td><%= item.description %></td>
+        <td>$<%= item.needed %></td>
+        <td><%= item.raised %></td>
+        <td>
+          <form action="/receipts/create" method="post">
+            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+            <input type="hidden" name="borrower" value="<%= item.id %>">
+            <input type="number" min=0 name="amount">
+            <input type="submit" value="Lend">
+          </form>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<h1>List of People You Lent Money To</h1>
+<div>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Need Money For</th>
+        <th>Reason for Loan</th>
+        <th>Amount Needed</th>
+        <th>Amount Raised</th>
+        <th>Amount Lent</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @my_borrowers.each do |item| %>
+      <tr>
+        <td><%= item.first_name %></td>
+        <td><%= item.purpose %></td>
+        <td><%= item.description %></td>
+        <td>$<%= item.needed %></td>
+        <td>$<%= item.raised %></td>
+        <td>$<%= item.amount %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
